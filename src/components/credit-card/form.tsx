@@ -1,8 +1,13 @@
-import { Button, MenuItem, Stack, TextField, Box } from "@mui/material"
+import { Button, MenuItem, Stack, TextField } from "@mui/material"
 import { useCreditCard } from "../../hooks"
 import { creditCardStore } from "../../stores"
 
-export const CreditCardForm = () => {
+interface CreditCardFormProps {
+  installmentOptions: string[]
+  selectedInstallment: number
+}
+
+export const CreditCardForm: React.FC<CreditCardFormProps> = ({ installmentOptions, selectedInstallment }) => {
   const { fullName, cvv } = creditCardStore.useStore((state) => state?.fields)
   const {
     maskedCardNumber,
@@ -23,6 +28,10 @@ export const CreditCardForm = () => {
     maskedExpiration: isValidated && !maskedExpiration && "Validade é obrigatório",
     cvv: isValidated && !cvv && "CVV é obrigatório",
   }
+
+  const defaultInstallment = installmentOptions.find(
+    (option) => option.startsWith(`${selectedInstallment}x`)
+  ) || installmentOptions[0]
 
   return (
     <Stack
@@ -103,9 +112,9 @@ export const CreditCardForm = () => {
         id="installments"
         label="Parcelas"
         select
-        value="1x de R$ 15.300,00"
+        value={defaultInstallment}
       >
-        {["1x de R$ 15.300,00"].map((option) => (
+        {installmentOptions.map((option: string) => (
           <MenuItem key={option} value={option}>
             {option}
           </MenuItem>
