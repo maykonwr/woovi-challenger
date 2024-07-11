@@ -1,12 +1,12 @@
 import { ChangeEvent, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { crediCardStore } from "../stores"
+import { creditCardStore } from "../stores"
 import { maskCPF, maskCreditCardNumber } from "../utils"
 import { maskExpiration } from "../utils/masks"
 
 export const useCreditCard = () => {
   let navigate = useNavigate()
-  const { fields } = crediCardStore.getState()
+  const { fields } = creditCardStore.getState()
 
   const [maskedCpf, setMaskedCpf] = useState("")
   const [maskedCardNumber, setMaskedCardNumber] = useState("")

@@ -1,6 +1,6 @@
 import { createStore } from "."
 
-export const crediCardStore = createStore({
+export const creditCardStore = createStore({
   fields: {
     fullName: "",
     cpf: "",
@@ -10,4 +10,4 @@ export const crediCardStore = createStore({
   }
 })
 
-export type ValuescrediCardStore = ReturnType<typeof crediCardStore.getState>
+export type ValuescreditCardStore = ReturnType<typeof creditCardStore.getState>

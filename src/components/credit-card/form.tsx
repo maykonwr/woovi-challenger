@@ -1,9 +1,9 @@
-import { Button, MenuItem, Stack, TextField } from "@mui/material"
+import { Button, MenuItem, Stack, TextField, Box } from "@mui/material"
 import { useCreditCard } from "../../hooks"
-import { crediCardStore } from "../../stores"
+import { creditCardStore } from "../../stores"
 
 export const CreditCardForm = () => {
-  const { fullName, cvv } = crediCardStore.useStore((state) => state?.fields)
+  const { fullName, cvv } = creditCardStore.useStore((state) => state?.fields)
   const {
     maskedCardNumber,
     maskedCpf,
@@ -13,9 +13,17 @@ export const CreditCardForm = () => {
     handleExpirationChange,
     handleInputChange,
     isValidated,
-    onSubmit
+    onSubmit,
   } = useCreditCard()
-  
+
+  const errors = {
+    fullName: isValidated && !fullName && "Nome completo é obrigatório",
+    maskedCpf: isValidated && !maskedCpf && "CPF é obrigatório",
+    maskedCardNumber: isValidated && !maskedCardNumber && "Número do cartão é obrigatório",
+    maskedExpiration: isValidated && !maskedExpiration && "Validade é obrigatório",
+    cvv: isValidated && !cvv && "CVV é obrigatório",
+  }
+
   return (
     <Stack
       spacing={3}
@@ -24,14 +32,14 @@ export const CreditCardForm = () => {
       autoComplete="off"
       sx={{
         "& .MuiInputBase-root": {
-          fontWeight: "regular"
-        }
+          fontWeight: "regular",
+        },
       }}
     >
       <TextField
-        error={isValidated && !fullName}
+        error={!!errors.fullName}
         fullWidth
-        helperText={isValidated && !fullName && "Nome completo é obrigatório"}
+        helperText={errors.fullName}
         id="full-name"
         label="Nome completo"
         onChange={(event) => handleInputChange(event, "fullName")}
@@ -39,9 +47,9 @@ export const CreditCardForm = () => {
         variant="outlined"
       />
       <TextField
-        error={isValidated && !maskedCpf}
+        error={!!errors.maskedCpf}
         fullWidth
-        helperText={isValidated && !maskedCpf && "CPF é obrigatório"}
+        helperText={errors.maskedCpf}
         id="cpf"
         inputProps={{ inputMode: "numeric", pattern: "[0-9]*", maxLength: 14 }}
         label="CPF"
@@ -52,9 +60,9 @@ export const CreditCardForm = () => {
         variant="outlined"
       />
       <TextField
-        error={isValidated && !maskedCardNumber}
+        error={!!errors.maskedCardNumber}
         fullWidth
-        helperText={isValidated && !maskedCpf && "Número do é obrigatório"}
+        helperText={errors.maskedCardNumber}
         id="card-number"
         inputProps={{ inputMode: "numeric", pattern: "[0-9]*", maxLength: 19 }}
         label="Número do cartão"
@@ -66,9 +74,9 @@ export const CreditCardForm = () => {
       />
       <Stack direction="row" spacing={3}>
         <TextField
-          error={isValidated && !maskedExpiration}
+          error={!!errors.maskedExpiration}
           fullWidth
-          helperText={isValidated && !maskedCpf && "Validade é obrigatório"}
+          helperText={errors.maskedExpiration}
           id="expiration"
           inputProps={{ inputMode: "numeric", pattern: "[0-9]*", maxLength: 5 }}
           label="Vencimento"
@@ -79,9 +87,9 @@ export const CreditCardForm = () => {
           variant="outlined"
         />
         <TextField
-          error={isValidated && !cvv}
+          error={!!errors.cvv}
           fullWidth
-          helperText={isValidated && !maskedCpf && "CVV é obrigatório"}
+          helperText={errors.cvv}
           id="cvv"
           inputProps={{ inputMode: "numeric", pattern: "[0-9]*", maxLength: 3 }}
           label="CVV"
