@@ -1,33 +1,27 @@
 interface FormatCurrencyI {
   country?: string
-  currrency?: string
+  currency?: string
   value: string | number
 }
 
 export const formatCurrency = ({
   country = "pt-BR",
-  currrency = "BRL",
-  value
-}: FormatCurrencyI) => {
-  if (!value) {
-    return Number(0).toLocaleString(country, {
-      style: "currency",
-      currency: currrency
-    })
-  }
-  const formatter = Number(value).toLocaleString(country, {
+  currency = "BRL",
+  value,
+}: FormatCurrencyI): string => {
+  const numberValue = Number(value) || 0
+  return new Intl.NumberFormat(country, {
     style: "currency",
-    currency: currrency
-  })
-  return formatter;
-};
+    currency,
+  }).format(numberValue)
+}
 
 export const formatDate = (date: Date): string => {
   const timeFormat = new Intl.DateTimeFormat("pt-BR", {
     timeStyle: "short",
   }).format(date)
 
-  const dateFormat = new Date(date).toLocaleDateString("pt-BR")
+  const dateFormat = new Intl.DateTimeFormat("pt-BR").format(date)
 
-  return dateFormat + " - " + timeFormat
+  return `${dateFormat} - ${timeFormat}`
 }

@@ -11,9 +11,9 @@ export const PageHeader: FC<PageHeaderI> = ({ title }) => {
     <Stack alignItems="center" spacing={4}>
       <WooviLogo
         sx={{
-          width: "123px",
+          width: 123,
           height: "auto",
-          mx: "auto"
+          mx: "auto",
         }}
       />
       <Typography

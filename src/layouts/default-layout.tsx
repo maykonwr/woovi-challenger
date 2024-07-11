@@ -8,5 +8,5 @@ export const DefaultLayout: FC = () => {
       <Outlet />
       <PageFooter />
     </BaseTemplate>
-  );
-};
+  )
+}

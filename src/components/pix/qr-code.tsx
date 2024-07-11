@@ -7,15 +7,15 @@ import { pixCreditCardStore } from "../../stores"
 
 export const PixQRCode: FC<ImageAttributes> = (props) => {
   const { code } = pixCreditCardStore.getState()
-  let navigate = useNavigate();
-  const theme = useTheme();
+  let navigate = useNavigate()
+  const theme = useTheme()
   return (
     <Stack spacing={4} alignItems="center" px={2}>
       <CardMedia
         sx={{
           maxWidth: "350px",
           maxHeight: "auto",
-          border: `2px solid ${theme.palette.primary.main}`,
+          border: `2px solid ${theme?.palette?.primary?.main}`,
           borderRadius: 2,
           padding: 1
         }}

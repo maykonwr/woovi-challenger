@@ -1,11 +1,10 @@
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, useCallback, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { creditCardStore } from "../stores"
-import { maskCPF, maskCreditCardNumber } from "../utils"
-import { maskExpiration } from "../utils/masks"
+import { maskCPF, maskCreditCardNumber, maskExpiration } from "../utils"
 
 export const useCreditCard = () => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const { fields } = creditCardStore.getState()
 
   const [maskedCpf, setMaskedCpf] = useState("")
@@ -16,34 +15,34 @@ export const useCreditCard = () => {
   type KeyTypes = "fullName" | "cpf" | "cardNumber" | "cvv" | "expiration"
   type EventType = ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 
-  const handleInputChange = (event: EventType, key: KeyTypes) => {
+  const handleInputChange = useCallback((event: EventType, key: KeyTypes) => {
     setIsValidate(false)
     fields[key] = event.target.value
-  }
+  }, [fields])
 
-  const handleCpfChange = (event: EventType) => {
+  const handleCpfChange = useCallback((event: EventType) => {
     setIsValidate(false)
     const input = event.target.value
     const maskedInput = maskCPF(input)
-    setMaskedCpf(maskedInput);
+    setMaskedCpf(maskedInput)
     fields.cpf = input
-  }
+  }, [fields])
 
-  const handleCardNumberChange = (event: EventType) => {
+  const handleCardNumberChange = useCallback((event: EventType) => {
     setIsValidate(false)
     const input = event.target.value
     const maskedInput = maskCreditCardNumber(input)
     setMaskedCardNumber(maskedInput)
     fields.cardNumber = input
-  }
+  }, [fields])
 
-  const handleExpirationChange = (event: EventType) => {
+  const handleExpirationChange = useCallback((event: EventType) => {
     setIsValidate(false)
     const input = event.target.value
     const maskedInput = maskExpiration(input)
     setMaskedExpiration(maskedInput)
     fields.expiration = input
-  }
+  }, [fields])
 
   const hasEmptyField = (inputs: string[]): boolean => {
     return inputs.includes("")
@@ -51,7 +50,7 @@ export const useCreditCard = () => {
 
   const onSubmit = () => {
     setIsValidate(true)
-    const allInputs = [...Object.values(fields)]
+    const allInputs = Object.values(fields)
     if (!hasEmptyField(allInputs)) {
       navigate("/")
     }
@@ -66,6 +65,6 @@ export const useCreditCard = () => {
     handleExpirationChange,
     handleInputChange,
     isValidated,
-    onSubmit
+    onSubmit,
   }
 }

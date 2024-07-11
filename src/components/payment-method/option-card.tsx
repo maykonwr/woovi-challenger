@@ -16,16 +16,16 @@ export const OptionCard: FC<OptionContentI> = ({
   total
 }) => {
   
-  const isSelected = selectedOption === installment;
+  const isSelected = selectedOption === installment
 
-  let navigate = useNavigate();
+  let navigate = useNavigate()
   
   const onClick = () => {
-    const state = paymentOptionsStore.getState();
+    const state = paymentOptionsStore.getState()
     paymentOptionsStore.setState({
       ...state,
       selectedOption: state.options.find(
-        (option) => option.installment === installment
+        (option) => option?.installment === installment
       )!
     })
     navigate("/pix")

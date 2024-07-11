@@ -5,13 +5,13 @@ export const MuiChip = {
   styleOverrides: {
     root: {
       padding: 8,
-      borderRadius: radius.full,
-      backgroundColor: palette.neutral.light
+      borderRadius: radius?.full,
+      backgroundColor: palette?.neutral?.light
     },
     label: {
-      fontSize: fontSize.lg,
-      fontWeight: fontWeight.bold,
-      color: palette.neutral.dark
+      fontSize: fontSize?.lg,
+      fontWeight: fontWeight?.bold,
+      color: palette?.neutral.dark
     }
   }
 }

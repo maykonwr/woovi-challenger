@@ -27,7 +27,7 @@ export const Options: FC<OptionsI> = ({
             selectedOption={selectedOption}
             {...option}
           />
-        );
+        )
       })}
     </ButtonGroup>
   )

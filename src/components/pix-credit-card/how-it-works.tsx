@@ -16,7 +16,7 @@ export const HowItWorks = () => {
       <Divider />
       <Accordion
         sx={{
-          borderTop: `1px solid ${theme.palette.grey}`,
+          borderTop: `1px solid ${theme?.palette?.grey}`,
           py: 1
         }}
       >

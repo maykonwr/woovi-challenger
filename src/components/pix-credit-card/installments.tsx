@@ -34,7 +34,7 @@ export const Installments = () => {
                 <Typography variant="subtitle2">{`${installment}${label}`}</Typography>
               </Stack>
               <Typography variant="subtitle1">
-                {selectedOption.amount}
+                {selectedOption?.amount}
               </Typography>
             </Stack>
             {!lastItem && (

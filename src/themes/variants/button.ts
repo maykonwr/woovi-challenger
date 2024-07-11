@@ -10,7 +10,7 @@ type StyleOverridesType =
         Omit<Theme, "components">
       >
     >
-  | undefined;
+  | undefined
 
 export const MuiButton = {
   defaultProps: {
@@ -22,17 +22,17 @@ export const MuiButton = {
         width: "100%",
         borderWidth: "2px",
         textTransform: "none",
-        borderRadius: radius.md,
-        borderColor: palette.neutral.light,
+        borderRadius: radius?.md,
+        borderColor: palette?.neutral?.light,
         ":hover": {
           borderWidth: "2px"
         }
       }),
       ...(ownerState.variant === "contained" && {
         textTransform: "none",
-        borderRadius: radius.md,
-        backgroundColor: palette.secondary.main,
-        color: palette.white,
+        borderRadius: radius?.md,
+        backgroundColor: palette?.secondary?.main,
+        color: palette?.white,
       })
     })
   } as StyleOverridesType

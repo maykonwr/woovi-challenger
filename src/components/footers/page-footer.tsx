@@ -17,9 +17,9 @@ export const PageFooter = () => {
       </Typography>
       <WooviLogo
         sx={{
-          width: "58px",
+          width: 58,
           height: "auto",
-          filter: "grayscale()"
+          filter: "grayscale(100%)"
         }}
       />
     </Stack>

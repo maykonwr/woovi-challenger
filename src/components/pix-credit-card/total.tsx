@@ -15,7 +15,7 @@ export const Total = () => {
       <Typography variant="caption" color="neutral.main">
         {`CET: ${cet}%`}
       </Typography>
-      <Typography variant="subtitle2">{`Total: ${selectedOption.total}`}</Typography>
+      <Typography variant="subtitle2">{`Total: ${selectedOption?.total}`}</Typography>
     </Stack>
   )
 }

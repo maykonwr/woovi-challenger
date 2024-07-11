@@ -6,7 +6,7 @@ export const BaseTemplate: FC<DivAttributes> = (props) => {
   return (
     <Container maxWidth="sm" sx={{ py: 3, px: 1 }} {...props}>
       <Stack spacing={4}>
-        {props.children}
+        {props?.children}
       </Stack>
     </Container>
   )
