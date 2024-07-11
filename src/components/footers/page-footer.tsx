@@ -1,6 +1,6 @@
-import { Stack, Typography } from "@mui/material"
-import { SecurityIcon } from "../icons"
-import { WooviLogo } from "../logos"
+import { Stack, Typography } from "@mui/material";
+import { SecurityIcon } from "../icons";
+import { WooviLogo } from "../logos";
 
 export const PageFooter = () => {
   return (
@@ -19,9 +19,10 @@ export const PageFooter = () => {
         sx={{
           width: 58,
           height: "auto",
-          filter: "grayscale(100%)"
+          filter: "grayscale(100%)",
+          marginBottom: "6px !important",
         }}
       />
     </Stack>
-  )
-}
+  );
+};
